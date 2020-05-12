@@ -1,4 +1,4 @@
-package com.example.pots_trackr
+package com.therobertball.pots_trackr
 
 import androidx.annotation.NonNull;
 import io.flutter.embedding.android.FlutterActivity

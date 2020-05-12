@@ -1,7 +1,52 @@
-import 'package:flutter/material.dart';
-// import 'package:table_calendar/table_calendar.dart';
+import 'dart:async';
 
-void main() => runApp(MaterialApp(home: HomePage()));
+import 'package:catcher/catcher_plugin.dart';
+import 'package:flutter/material.dart';
+import 'package:pots_trackr/app/router.gr.dart';
+import 'package:pots_trackr/app/locator.dart';
+import 'package:pots_trackr/core/services/analytics_service.dart';
+import 'package:pots_trackr/app/logger.dart';
+import 'package:pots_trackr/ui/shared/app_colors.dart';
+import 'package:pots_trackr/ui/shared/shared_styles.dart';
+import 'package:stacked_services/stacked_services.dart';
+
+void main() {
+  setupLocator();
+  Catcher(MyApp(),
+      debugConfig: Logger.debugOptions,
+      releaseConfig: Logger.releaseOptions,
+      navigatorKey: locator<NavigationService>().navigatorKey);
+  // final logger = Logger.instance;
+
+  // FlutterError.onError = (FlutterErrorDetails details) async {
+  //   if (logger.isInDebugMode)
+  //     FlutterError.dumpErrorToConsole(details);
+  //   else
+  //     Zone.current.handleUncaughtError(details.exception, details.stack);
+  // };
+
+  // runZoned(() {
+  //   setupLocator();
+  //   runApp(MyApp());
+  // }, onError: logger.reportError);
+}
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) => MaterialApp(
+        // theme: ThemeData(
+        //     primarySwatch: Colors.blue,
+        //     textTheme: textTheme,
+        //     platform: TargetPlatform.android),
+        title: 'Pots Trackr',
+        navigatorKey: locator<NavigationService>().navigatorKey,
+        initialRoute: Routes.startupViewRoute,
+        onGenerateRoute: Router().onGenerateRoute,
+        navigatorObservers: [
+          locator<AnalyticsService>().getAnalyticsObserver()
+        ],
+      );
+}
 
 class Destination {
   const Destination(this.title, this.icon, this.color);
