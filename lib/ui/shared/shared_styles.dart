@@ -25,13 +25,27 @@ const String fontName = 'Roboto';
 const TextStyle buttonTitleTextStyle =
     const TextStyle(fontWeight: FontWeight.w700, color: Colors.white);
 
+// Theme Data
+
+ThemeData appTheme = ThemeData(
+  backgroundColor: LightColor.background,
+  primaryColor: LightColor.purple,
+  cardTheme: CardTheme(color: LightColor.background),
+  textTheme: TextTheme(headline4: TextStyle(color: LightColor.black)),
+  iconTheme: IconThemeData(color: LightColor.iconColor),
+  dividerColor: LightColor.grey,
+  primaryTextTheme: TextTheme(
+    bodyText1: TextStyle(color: LightColor.titleTextColor),
+  ),
+);
+
 const TextTheme textTheme = TextTheme(
-  display1: display1,
-  headline: headline,
-  title: title,
-  subtitle: subtitle,
-  body2: body2,
-  body1: body1,
+  headline4: display1,
+  headline5: headline,
+  headline6: title,
+  subtitle2: subtitle,
+  bodyText1: body2,
+  bodyText2: body1,
   caption: caption,
 );
 

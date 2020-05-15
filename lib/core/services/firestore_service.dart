@@ -1,9 +1,13 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:pots_trackr/core/models/journal-entry.dart';
 import 'package:pots_trackr/core/models/user.dart';
 
 class FirestoreService {
   final CollectionReference _usersCollectionReference =
       Firestore.instance.collection('users');
+
+  final CollectionReference _journalEntriesCollectionReference =
+      Firestore.instance.collection('journalEntries');
 
   Future createUser(User user) async {
     try {
@@ -17,6 +21,17 @@ class FirestoreService {
     try {
       var userData = await _usersCollectionReference.document(uid).get();
       return User.fromData(userData.data);
+    } catch (e) {
+      return e.message;
+    }
+  }
+
+  Future getJournalEntries(String userId) async {
+    try {
+      var entryData = await _journalEntriesCollectionReference
+          .where('userId', isEqualTo: userId)
+          .getDocuments();
+      return entryData.documents.map((doc) => JournalEntry.fromData(doc.data));
     } catch (e) {
       return e.message;
     }
