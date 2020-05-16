@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:pots_trackr/core/models/journal-entry.dart';
 import 'package:pots_trackr/core/models/user.dart';
@@ -5,9 +7,10 @@ import 'package:pots_trackr/core/models/user.dart';
 class FirestoreService {
   final CollectionReference _usersCollectionReference =
       Firestore.instance.collection('users');
-
   final CollectionReference _journalEntriesCollectionReference =
       Firestore.instance.collection('journalEntries');
+  final StreamController<List<JournalEntry>> _entriesController =
+      StreamController<List<JournalEntry>>.broadcast();
 
   Future createUser(User user) async {
     try {
@@ -26,14 +29,20 @@ class FirestoreService {
     }
   }
 
-  Future getJournalEntries(String userId) async {
-    try {
-      var entryData = await _journalEntriesCollectionReference
-          .where('userId', isEqualTo: userId)
-          .getDocuments();
-      return entryData.documents.map((doc) => JournalEntry.fromData(doc.data));
-    } catch (e) {
-      return e.message;
-    }
+  Stream listenToJournalEntries(String userId) {
+    _journalEntriesCollectionReference
+        .where('userId', isEqualTo: userId)
+        .snapshots()
+        .listen((snapshot) {
+      if (snapshot.documents.isNotEmpty) {
+        var newEntries = snapshot.documents
+            .map((doc) => JournalEntry.fromData(doc.data))
+            .toList();
+
+        _entriesController.add(newEntries);
+      }
+    });
+
+    return _entriesController.stream;
   }
 }

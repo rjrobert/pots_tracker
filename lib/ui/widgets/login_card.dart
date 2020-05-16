@@ -9,9 +9,10 @@ import 'package:pots_trackr/ui/widgets/text_link.dart';
 import 'package:stacked/stacked.dart';
 
 class LoginCard extends ViewModelWidget<LoginViewModel> {
-  final GlobalKey<FormBuilderState> _fbKey = GlobalKey<FormBuilderState>();
+  final GlobalKey<FormBuilderState> formBuilderStateKey;
 
-  LoginCard({Key key}) : super(key: key, reactive: true);
+  LoginCard({Key key, this.formBuilderStateKey})
+      : super(key: key, reactive: true);
 
   @override
   Widget build(BuildContext context, LoginViewModel model) => SizedBox(
@@ -21,7 +22,7 @@ class LoginCard extends ViewModelWidget<LoginViewModel> {
           color: Colors.white,
           elevation: 2.0,
           child: FormBuilder(
-            key: _fbKey,
+            key: formBuilderStateKey,
             autovalidate: true,
             child: Padding(
               padding: const EdgeInsets.all(18.0),
@@ -48,10 +49,12 @@ class LoginCard extends ViewModelWidget<LoginViewModel> {
                     FlatButton(
                       child: Text('Login', style: buttonTitleTextStyle),
                       onPressed: () {
-                        if (_fbKey.currentState.saveAndValidate())
+                        if (formBuilderStateKey.currentState.saveAndValidate())
                           model.login(
-                              email: _fbKey.currentState.value['email'],
-                              password: _fbKey.currentState.value['password']);
+                              email: formBuilderStateKey
+                                  .currentState.value['email'],
+                              password: formBuilderStateKey
+                                  .currentState.value['password']);
                       },
                       color: Color(0xFF4aa0d5),
                       padding:

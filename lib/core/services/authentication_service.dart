@@ -84,8 +84,8 @@ class AuthenticationService {
     return user != null;
   }
 
-  void signOut() {
-    _firebaseAuth.signOut();
+  Future<void> signOut() {
+    return _firebaseAuth.signOut();
   }
 
   Future _populateCurrentUser(FirebaseUser user) async {

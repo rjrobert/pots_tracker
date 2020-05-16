@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:pots_trackr/core/services/authentication_service.dart';
 import 'package:pots_trackr/app/locator.dart';
 import 'package:stacked/stacked.dart';
@@ -10,6 +12,8 @@ class StartUpViewModel extends BaseViewModel {
   final NavigationService _navigationService = locator<NavigationService>();
 
   Future handleStartupLogic() async {
+    sleep(Duration(seconds: 30));
+
     var hasLoggedInUser = await _authenticationService.isUserLoggedIn();
 
     if (hasLoggedInUser)

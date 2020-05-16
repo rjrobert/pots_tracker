@@ -11,18 +11,17 @@ class HomeView extends StatelessWidget {
   Widget build(BuildContext context) =>
       ViewModelBuilder<HomeViewModel>.reactive(
         viewModelBuilder: () => HomeViewModel(),
-        onModelReady: (model) => model.getJournalEntries(),
         builder: (context, model, child) => ModalProgressHUD(
           inAsyncCall: model.isBusy,
           child: Scaffold(
             appBar: AppBar(
-              leading: IconButton(
-                icon: Icon(
-                  Icons.menu,
-                  color: darkText,
-                ),
-                onPressed: () {},
-              ),
+              // leading: IconButton(
+              //   icon: Icon(
+              //     Icons.menu,
+              //     color: darkText,
+              //   ),
+              //   onPressed: () {},
+              // ),
               backgroundColor: Theme.of(context).backgroundColor,
               elevation: 0,
             ),
@@ -31,17 +30,37 @@ class HomeView extends StatelessWidget {
                 children: <Widget>[
                   DrawerHeader(
                     child: Text('Drawer'),
+                  ),
+                  RaisedButton(
+                    child: Text('Logout'),
+                    onPressed: () {
+                      model.signOut();
+                    },
                   )
                 ],
               ),
             ),
             backgroundColor: Theme.of(context).backgroundColor,
-            body: SafeArea(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[],
-              ),
-            ),
+            body: model.data == null
+                ? Container()
+                : ListView.builder(
+                    itemCount: model.data.length,
+                    itemBuilder: (context, index) => Container(
+                      height: 60,
+                      alignment: Alignment.center,
+                      child: Row(
+                        children: <Widget>[
+                          Expanded(
+                            child: Padding(
+                              padding: const EdgeInsets.only(left: 15.0),
+                              child:
+                                  Text(model.data[index].createdAt.toString()),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
           ),
         ),
       );
