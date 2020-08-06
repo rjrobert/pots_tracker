@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:pots_trackr/core/models/journal-entry.dart';
+import 'package:pots_trackr/core/models/journal_entry.dart';
 import 'package:pots_trackr/core/models/user.dart';
 
 class FirestoreService {
@@ -14,7 +14,7 @@ class FirestoreService {
 
   Future createUser(User user) async {
     try {
-      await _usersCollectionReference.document(user.id).setData(user.toJson());
+      await _usersCollectionReference.document(user.id).setData(user.toMap());
     } catch (e) {
       return e.message;
     }
@@ -23,7 +23,7 @@ class FirestoreService {
   Future getUser(String uid) async {
     try {
       var userData = await _usersCollectionReference.document(uid).get();
-      return User.fromData(userData.data);
+      return User.fromMap(userData.data);
     } catch (e) {
       return e.message;
     }
@@ -36,7 +36,7 @@ class FirestoreService {
         .listen((snapshot) {
       if (snapshot.documents.isNotEmpty) {
         var newEntries = snapshot.documents
-            .map((doc) => JournalEntry.fromData(doc.data))
+            .map((doc) => JournalEntry.fromMap(doc.data))
             .toList();
 
         _entriesController.add(newEntries);

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
 import 'package:pots_trackr/core/viewmodels/views/home_view_model.dart';
-import 'package:pots_trackr/ui/shared/app_colors.dart';
 import 'package:stacked/stacked.dart';
 
 class HomeView extends StatelessWidget {

@@ -22,7 +22,6 @@ dependencies:
   # Logging
   catcher: ^0.3.6
   sentry: '>=3.0.0 <4.0.0'
-  device_info: ^0.4.1+4
 
   # Firebase
   firebase_auth: ^0.16.0

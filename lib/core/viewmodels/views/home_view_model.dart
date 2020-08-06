@@ -1,5 +1,5 @@
 import 'package:pots_trackr/app/router.gr.dart';
-import 'package:pots_trackr/core/models/journal-entry.dart';
+import 'package:pots_trackr/core/models/journal_entry.dart';
 import 'package:pots_trackr/core/models/user.dart';
 import 'package:pots_trackr/core/services/authentication_service.dart';
 import 'package:pots_trackr/app/locator.dart';
