@@ -10,18 +10,32 @@ import 'package:stacked_services/stacked_services.dart';
 
 void main() {
   setupLocator();
-  Catcher(
-    MyApp(),
-    debugConfig: Logger.debugOptions,
-    releaseConfig: Logger.releaseOptions,
-    navigatorKey: locator<NavigationService>().navigatorKey,
-  );
+  Catcher(MyApp(),
+      debugConfig: Logger.debugOptions,
+      releaseConfig: Logger.releaseOptions,
+      navigatorKey: locator<NavigationService>().navigatorKey);
+  // final logger = Logger.instance;
+
+  // FlutterError.onError = (FlutterErrorDetails details) async {
+  //   if (logger.isInDebugMode)
+  //     FlutterError.dumpErrorToConsole(details);
+  //   else
+  //     Zone.current.handleUncaughtError(details.exception, details.stack);
+  // };
+
+  // runZoned(() {
+  //   setupLocator();
+  //   runApp(MyApp());
+  // }, onError: logger.reportError);
 }
 
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) => MaterialApp(
-        theme: appTheme,
+        // theme: ThemeData(
+        //     primarySwatch: Colors.blue,
+        //     textTheme: textTheme,
+        //     platform: TargetPlatform.android),
         title: 'Pots Trackr',
         builder: ExtendedNavigator<Router>(
           router: Router(),
