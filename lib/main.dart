@@ -14,19 +14,6 @@ void main() {
       debugConfig: Logger.debugOptions,
       releaseConfig: Logger.releaseOptions,
       navigatorKey: locator<NavigationService>().navigatorKey);
-  // final logger = Logger.instance;
-
-  // FlutterError.onError = (FlutterErrorDetails details) async {
-  //   if (logger.isInDebugMode)
-  //     FlutterError.dumpErrorToConsole(details);
-  //   else
-  //     Zone.current.handleUncaughtError(details.exception, details.stack);
-  // };
-
-  // runZoned(() {
-  //   setupLocator();
-  //   runApp(MyApp());
-  // }, onError: logger.reportError);
 }
 
 class MyApp extends StatelessWidget {
