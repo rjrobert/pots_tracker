@@ -4,11 +4,12 @@ import 'package:pots_trackr/ui/views/login_view.dart';
 import 'package:pots_trackr/ui/views/signup_view.dart';
 import 'package:pots_trackr/ui/views/startup_view.dart';
 
-@MaterialAutoRouter()
-class $Router {
-  @initial
-  StartUpView startupViewRoute;
-  LoginView loginViewRoute;
-  SignUpView signUpViewRoute;
-  HomeView homeViewRoute;
-}
+@MaterialAutoRouter(
+  routes: [
+    MaterialRoute(page: StartUpView, initial: true),
+    MaterialRoute(page: LoginView),
+    MaterialRoute(page: SignUpView),
+    MaterialRoute(page: HomeView),
+  ],
+)
+class $Router {}

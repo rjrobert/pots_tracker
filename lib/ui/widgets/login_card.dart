@@ -67,6 +67,13 @@ class LoginCard extends ViewModelWidget<LoginViewModel> {
                         model.navigateToSignUp();
                       },
                     ),
+                    verticalSpaceMedium,
+                    TextLink(
+                      'Continue without Signing In.',
+                      onPressed: () {
+                        model.loginAnonymously();
+                      },
+                    ),
                   ],
                 ),
               ),

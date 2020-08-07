@@ -4,7 +4,7 @@ import 'package:pots_trackr/core/services/authentication_service.dart';
 import 'package:pots_trackr/core/services/firestore_service.dart';
 import 'package:stacked_services/stacked_services.dart';
 
-@registerModule
+@module
 abstract class ThirdPartyServicesModule {
   @lazySingleton
   NavigationService get navigationService;

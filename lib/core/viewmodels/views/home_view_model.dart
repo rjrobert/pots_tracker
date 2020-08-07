@@ -22,6 +22,6 @@ class HomeViewModel extends StreamViewModel<List<JournalEntry>> {
   void signOut() async {
     await runBusyFuture(_authenticationService.signOut());
 
-    _navigationService.replaceWith(Routes.loginViewRoute);
+    _navigationService.replaceWith(Routes.loginView);
   }
 }

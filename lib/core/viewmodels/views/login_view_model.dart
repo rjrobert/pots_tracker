@@ -31,13 +31,13 @@ class LoginViewModel extends BaseViewModel {
   }
 
   void navigateToSignUp() {
-    _navigationService.navigateTo(Routes.signUpViewRoute);
+    _navigationService.navigateTo(Routes.signUpView);
   }
 
   Future _postSignIn(dynamic result) async {
     if (result is bool) {
       if (result)
-        _navigationService.replaceWith(Routes.homeViewRoute);
+        _navigationService.replaceWith(Routes.homeView);
       else
         await _dialogService.showDialog(
             title: 'Login Failure',

@@ -1,4 +1,5 @@
-import 'package:catcher/catcher_plugin.dart';
+import 'package:auto_route/auto_route.dart';
+import 'package:catcher/catcher.dart';
 import 'package:flutter/material.dart';
 import 'package:pots_trackr/app/router.gr.dart';
 import 'package:pots_trackr/app/locator.dart';
@@ -22,12 +23,12 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) => MaterialApp(
         theme: appTheme,
         title: 'Pots Trackr',
-        navigatorKey: locator<NavigationService>().navigatorKey,
-        initialRoute: Routes.startupViewRoute,
-        onGenerateRoute: Router().onGenerateRoute,
-        navigatorObservers: [
-          locator<AnalyticsService>().getAnalyticsObserver()
-        ],
+        builder: ExtendedNavigator<Router>(
+          router: Router(),
+          navigatorKey: locator<NavigationService>().navigatorKey,
+          initialRoute: Routes.startUpView,
+          observers: [locator<AnalyticsService>().getAnalyticsObserver()],
+        ),
       );
 }
 

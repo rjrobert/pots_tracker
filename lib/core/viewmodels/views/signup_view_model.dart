@@ -20,7 +20,7 @@ class SignUpViewModel extends BaseViewModel {
 
     if (result is bool) {
       if (result)
-        _navigationService.replaceWith(Routes.homeViewRoute);
+        _navigationService.replaceWith(Routes.homeView);
       else
         await _dialogService.showDialog(
             title: 'Sign Up Failure',
