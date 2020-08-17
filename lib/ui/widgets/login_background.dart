@@ -8,29 +8,36 @@ class LoginBackgroud extends StatelessWidget {
   Widget build(BuildContext context) => Column(
         children: <Widget>[
           Flexible(
-              flex: 2,
-              child: ClipPath(
-                clipper: MyClipper(),
-                child: Stack(
-                  children: <Widget>[
-                    new Container(
-                        decoration: new BoxDecoration(
-                            gradient: new LinearGradient(
-                                colors: [nearlyBlue, grey]))),
-                    new Center(
-                        child: SizedBox(
-                            height: screenHeightFraction(context, dividedBy: 8),
-                            width: screenHeightFraction(context, dividedBy: 2),
-                            child: new CircleAvatar(
-                              backgroundColor: Colors.transparent,
-                              foregroundColor: nearlyWhite,
-                              radius: 100.0,
-                              child: FaIcon(FontAwesomeIcons.heartbeat,
-                                  color: Colors.white, size: 50.0),
-                            )))
-                  ],
-                ),
-              )),
+            flex: 2,
+            child: ClipPath(
+              clipper: MyClipper(),
+              child: new Image(
+                image: AssetImage('assets/images/logo.png'),
+              ),
+              // Stack(
+              //   children: <Widget>[
+              //     new Container(
+              //       decoration: new BoxDecoration(
+              //         gradient: new LinearGradient(
+              //           colors: [nearlyBlue, grey],
+              //         ),
+              //       ),
+              //     ),
+              //     new Center(
+              //         child: SizedBox(
+              //             height: screenHeightFraction(context, dividedBy: 8),
+              //             width: screenHeightFraction(context, dividedBy: 2),
+              //             child: new CircleAvatar(
+              //               backgroundColor: Colors.transparent,
+              //               foregroundColor: nearlyWhite,
+              //               radius: 100.0,
+              //               child: FaIcon(FontAwesomeIcons.heartbeat,
+              //                   color: Colors.white, size: 50.0),
+              //             )))
+              //   ],
+              // ),
+            ),
+          ),
           new Flexible(flex: 3, child: new Container())
         ],
       );

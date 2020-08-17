@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
         //     primarySwatch: Colors.blue,
         //     textTheme: textTheme,
         //     platform: TargetPlatform.android),
-        title: 'Pots Trackr',
+        title: 'Pots Tracker',
         builder: ExtendedNavigator<Router>(
           router: Router(),
           navigatorKey: locator<NavigationService>().navigatorKey,
