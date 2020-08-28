@@ -5,7 +5,7 @@ import 'package:pots_trackr/app/router.gr.dart';
 import 'package:pots_trackr/app/locator.dart';
 import 'package:pots_trackr/core/services/analytics_service.dart';
 import 'package:pots_trackr/app/logger.dart';
-import 'package:pots_trackr/ui/shared/shared_styles.dart';
+// import 'package:pots_trackr/ui/shared/shared_styles.dart';
 import 'package:stacked_services/stacked_services.dart';
 
 void main() {

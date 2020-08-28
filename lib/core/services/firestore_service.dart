@@ -14,7 +14,7 @@ class FirestoreService {
 
   Future createUser(User user) async {
     try {
-      await _usersCollectionReference.document(user.id).setData(user.toMap());
+      await _usersCollectionReference.document(user.id).setData(user.toJson());
     } catch (e) {
       return e.message;
     }
@@ -23,7 +23,7 @@ class FirestoreService {
   Future getUser(String uid) async {
     try {
       var userData = await _usersCollectionReference.document(uid).get();
-      return User.fromMap(userData.data);
+      return User.fromJson(userData.data);
     } catch (e) {
       return e.message;
     }
@@ -36,7 +36,7 @@ class FirestoreService {
         .listen((snapshot) {
       if (snapshot.documents.isNotEmpty) {
         var newEntries = snapshot.documents
-            .map((doc) => JournalEntry.fromMap(doc.data))
+            .map((doc) => JournalEntry.fromJson(doc.data))
             .toList();
 
         _entriesController.add(newEntries);
