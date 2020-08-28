@@ -26,12 +26,12 @@ const TextStyle buttonTitleTextStyle =
     const TextStyle(fontWeight: FontWeight.w700, color: Colors.white);
 
 const TextTheme textTheme = TextTheme(
-  display1: display1,
-  headline: headline,
-  title: title,
-  subtitle: subtitle,
-  body2: body2,
-  body1: body1,
+  // display1: display1,
+  // headline: headline,
+  // title: title,
+  // subtitle: subtitle,
+  // body2: body2,
+  // body1: body1,
   caption: caption,
 );
 

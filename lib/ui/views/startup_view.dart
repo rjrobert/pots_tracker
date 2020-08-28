@@ -16,6 +16,7 @@ class StartUpView extends StatelessWidget {
             fit: StackFit.expand,
             children: <Widget>[
               LoginBackgroud(),
+              // Image.asset('assets/images/logo.svg'),
               Center(
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
