@@ -42,11 +42,12 @@ dev_dependencies:
   flutter_driver:
     sdk: flutter
   test: any
-  build_runner: ^1.10.0
-  auto_route_generator: ^0.6.7
-  injectable_generator: ^1.0.4
+  build_runner: 
+  auto_route_generator: 
+  injectable_generator: 
   firebase_core: ^0.4.4+3
   json_serializable: ^3.4.1
+  mockito:
 
 flutter:
   uses-material-design: true

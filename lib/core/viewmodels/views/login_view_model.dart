@@ -1,15 +1,23 @@
 import 'package:flutter/widgets.dart';
-import 'package:pots_trackr/core/services/authentication_service.dart';
-import 'package:pots_trackr/app/locator.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
+
+import 'package:pots_trackr/app/locator.dart';
 import 'package:pots_trackr/app/router.gr.dart';
+import 'package:pots_trackr/core/services/authentication_service.dart';
 
 class LoginViewModel extends BaseViewModel {
-  final AuthenticationService _authenticationService =
-      locator<AuthenticationService>();
-  final DialogService _dialogService = locator<DialogService>();
-  final NavigationService _navigationService = locator<NavigationService>();
+  final AuthenticationService _authenticationService;
+  final DialogService _dialogService;
+  final NavigationService _navigationService;
+  LoginViewModel({
+    AuthenticationService authenticationService,
+    DialogService dialogService,
+    NavigationService navigationService,
+  })  : _authenticationService =
+            authenticationService ?? locator<AuthenticationService>(),
+        _dialogService = dialogService ?? locator<DialogService>(),
+        _navigationService = navigationService ?? locator<NavigationService>();
 
   Future login({@required String email, @required String password}) async {
     var result = await runBusyFuture(_authenticationService.loginWithEmail(
