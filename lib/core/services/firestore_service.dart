@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/services.dart';
 import 'package:pots_trackr/core/models/journal_entry.dart';
 import 'package:pots_trackr/core/models/user.dart';
 
@@ -44,5 +45,14 @@ class FirestoreService {
     });
 
     return _entriesController.stream;
+  }
+
+  Future createJournalEntry(JournalEntry journalEntry) async {
+    try {
+      await _journalEntriesCollectionReference.add(journalEntry.toJson());
+    } catch (e) {
+      if (e is PlatformException) return e.message;
+      return e.toString();
+    }
   }
 }

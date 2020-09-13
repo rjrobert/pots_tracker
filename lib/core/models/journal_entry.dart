@@ -8,7 +8,7 @@ class JournalEntry {
   final String userId;
   final DateTime createdAt;
   final int heartRate;
-  final Map<String, int> symptoms;
+  final List<Map<String, int>> symptoms;
   JournalEntry({
     this.entryId,
     this.userId,

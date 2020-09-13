@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
+import 'package:pots_trackr/app/app_constants.dart';
 import 'package:pots_trackr/core/viewmodels/views/home_view_model.dart';
+import 'package:pots_trackr/ui/widgets/journal_list.dart';
 import 'package:stacked/stacked.dart';
 
 class HomeView extends StatelessWidget {
@@ -14,15 +16,9 @@ class HomeView extends StatelessWidget {
           inAsyncCall: model.isBusy,
           child: Scaffold(
             appBar: AppBar(
-              // leading: IconButton(
-              //   icon: Icon(
-              //     Icons.menu,
-              //     color: darkText,
-              //   ),
-              //   onPressed: () {},
-              // ),
-              backgroundColor: Theme.of(context).backgroundColor,
-              elevation: 0,
+              // backgroundColor: Theme.of(context).backgroundColor,
+              // elevation: 0,
+              title: Text(AppConstants.AppName),
             ),
             drawer: Drawer(
               child: ListView(
@@ -40,26 +36,11 @@ class HomeView extends StatelessWidget {
               ),
             ),
             backgroundColor: Theme.of(context).backgroundColor,
-            body: model.data == null
-                ? Container()
-                : ListView.builder(
-                    itemCount: model.data.length,
-                    itemBuilder: (context, index) => Container(
-                      height: 60,
-                      alignment: Alignment.center,
-                      child: Row(
-                        children: <Widget>[
-                          Expanded(
-                            child: Padding(
-                              padding: const EdgeInsets.only(left: 15.0),
-                              child:
-                                  Text(model.data[index].createdAt.toString()),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
+            body: JournalList(),
+            floatingActionButton: FloatingActionButton(
+              child: Icon(Icons.add),
+              onPressed: () => model.navigateToCreateJournalView(),
+            ),
           ),
         ),
       );

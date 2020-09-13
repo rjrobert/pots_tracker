@@ -12,13 +12,13 @@ JournalEntry _$JournalEntryFromJson(Map<String, dynamic> json) {
     userId: json['userId'] as String,
     createdAt: json['createdAt'] == null
         ? null
-        : DateTime.fromMillisecondsSinceEpoch(
-            json['createdAt'].millisecondsSinceEpoch,
-          ),
+        : DateTime.parse(json['createdAt'] as String),
     heartRate: json['heartRate'] as int,
-    symptoms: (json['symptoms'] as Map<String, dynamic>)?.map(
-      (k, e) => MapEntry(k, e as int),
-    ),
+    symptoms: (json['symptoms'] as List)
+        ?.map((e) => (e as Map<String, dynamic>)?.map(
+              (k, e) => MapEntry(k, e as int),
+            ))
+        ?.toList(),
   );
 }
 

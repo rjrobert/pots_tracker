@@ -16,10 +16,8 @@ class StartUpViewModel extends BaseViewModel {
 
   Future handleStartupLogic() async {
     var hasLoggedInUser = await _authenticationService.isUserLoggedIn();
+    if (!hasLoggedInUser) await _authenticationService.loginAnonymously();
 
-    if (hasLoggedInUser)
-      _navigationService.replaceWith(Routes.homeView);
-    else
-      _navigationService.replaceWith(Routes.loginView);
+    _navigationService.replaceWith(Routes.homeView);
   }
 }

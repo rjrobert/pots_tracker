@@ -19,6 +19,9 @@ class HomeViewModel extends StreamViewModel<List<JournalEntry>> {
   Stream<List<JournalEntry>> get stream =>
       _firestoreService.listenToJournalEntries(currentUser.id);
 
+  void navigateToCreateJournalView() =>
+      _navigationService.navigateTo(Routes.createJournalEntryView);
+
   void signOut() async {
     await runBusyFuture(_authenticationService.signOut());
 

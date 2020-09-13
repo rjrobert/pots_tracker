@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route_annotations.dart';
+import 'package:pots_trackr/ui/views/create_journal_entry_view.dart';
 import 'package:pots_trackr/ui/views/home_view.dart';
 import 'package:pots_trackr/ui/views/login_view.dart';
 import 'package:pots_trackr/ui/views/signup_view.dart';
@@ -10,6 +11,7 @@ import 'package:pots_trackr/ui/views/startup_view.dart';
     MaterialRoute(page: LoginView),
     MaterialRoute(page: SignUpView),
     MaterialRoute(page: HomeView),
+    MaterialRoute(page: CreateJournalEntryView),
   ],
 )
 class $Router {}
